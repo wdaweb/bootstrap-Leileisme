@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap與互動套件</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <!-- Font Awesome  icon-->
+    <link rel="stylesheet" href="./css/all.min.css" />
+    <!-- swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- lightbox -->
+    <link rel="stylesheet" href="./css/magnific-popup.css">
+    <link rel="stylesheet" href="./css/magnific-popup_self.css">
+    <!-- 我的CSS -->
+    <link rel="stylesheet" href="./css/mystyle.css" />
+    <link rel="stylesheet" href="./css/swiper.css" />
+  </head>
+
+  <body>
+    <!-- 引入vue -->
+
+    <div id="app">
+      <!-- 1.header 營業時間與搜尋(非導覽列) -->
+      <div class="header text-center text-light p-3 position-relative">
+        <p class="fs-7 text-sm-start ms-xl-11 fw-semibold">Opening times: Monday - Friday: 08AM-06PM</p>
+
+        <!-- 淡入淡出沒這麼自然 -->
+        <transition name="fade" mode="out-in">
+          <form class="d-flex position-absolute bottom-15 bottom-sm-20 end-2 end-sm-1 end-xl-15">
+            <input v-if="searchOpen" class="search-input form-control me-2" type="search" placeholder="Search..." />
+            <button v-if="searchOpen" type="submit" class="search_submit btn btn-sm">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <button type="button" class="search_button btn btn-sm" @click="searchOpen=!searchOpen">
+              <i v-if="!searchOpen" class="fa-solid fa-magnifying-glass"></i>
+              <i v-else class="fa-solid fa-xmark"></i>
+            </button>
+          </form>
+        </transition>
+      </div>
+
+      <!-- 2.導覽列與聯絡資訊 -->
+      <div class="navbar_box">
+        <!-- 手機版顯示 - logo -->
+        <div class="logoText text-center d-block d-sm-none">
+          <img src="./images/logo-1.webp" alt="logo" class="mb-2" />
+          <div>523 Sylvan Ave, 5th Floor</div>
+          <div>Mountain View, CA 94041 USA</div>
+          <div><a href="#">+1 (844) 123 456 78</a></div>
+          <div><a href="#">info@demolink.org</a></div>
+        </div>
+
+        <!-- sm尺寸開始顯示 - logo -->
+        <div class="row fs-7 pt-sm-5">
+          <div class="col-sm-3 d-none d-sm-block">
+            <img src="./images/logo-1.webp" alt="logo" class="mb-2 ms-md-3 ms-sm-2" />
+          </div>
+          <div class="col-sm-4 offset-sm-1 col-md-3 offset-md-3 col-lg-3 offset-lg-4 text-center d-none d-sm-block">
+            <div>523 Sylvan Ave, 5th Floor</div>
+            <div>Mountain View, CA 94041 USA</div>
+          </div>
+          <!-- <div class="col-3"></div> -->
+          <div class="col-sm-4 col-md-3 col-lg-2 text-center d-none d-sm-block">
+            <div class="line"></div>
+            <div><a href="#">+1 (844) 123 456 78</a></div>
+            <div><a href="#">info@demolink.org</a></div>
+          </div>
+        </div>
+
+        <!-- 手機板顯示 -導覽列 -->
+        <div class="d-sm-none">
+          <button
+            class="btn"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvas"
+            style="position: absolute; bottom: 5%; left: 5%"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="offcanvas offcanvas-start w-75 bg-bg-gray" tabindex="-1" id="offcanvas">
+            <div class="offcanvas-body">
+              <!-- 關閉按鈕 -->
+              <button type="button" class="float-end btn text-white" data-bs-dismiss="offcanvas">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+
+              <!-- 列表 -->
+              <ul class="offcanvas_list">
+                <li><a href="#" style="color: #fffb12">HOME</a></li>
+                <li><a href="#">ABOUT</a></li>
+                <li><a href="#">TEAM</a></li>
+                <li><a href="#">GALLERY</a></li>
+                <li><a href="#">BLOG</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- sm尺寸開始顯示 - 導覽列  -->
+        <nav class="navbar navbar-expand-sm navbar-light bg-light bg-bg-gray rounded-5 d-none d-sm-block">
+          <div class="container-fluid">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-link active ms-md-5 ms-4"><a href="#" style="color: #fffb12">HOME</a></li>
+              <li class="nav-link active ms-md-5 ms-4"><a href="#" class="text-white">ABOUT</a></li>
+              <li class="nav-link active ms-md-5 ms-4"><a href="#" class="text-white">TEAM</a></li>
+              <li class="nav-link active ms-md-5 ms-4"><a href="#" class="text-white">GALLERY</a></li>
+              <li class="nav-link active ms-md-5 ms-4"><a href="#" class="text-white">BLOG</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <!-- 3.輪播圖 -->
+    <div class="Carousel_box text-xl-start">
+      <div class="swiperCarousel mySwiperCarousel">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide swiper-slideCarousel">
+            <div class="rowSlide_1 text-start">
+              <div class="fs-8 fw-bold">PROVIDING QUALITY PRODUCTS</div>
+              <div class="mt-4" style="font-size: 2rem; font-weight: 500">ORGANIC</div>
+              <div class="mt-1" style="font-size: 2rem; font-weight: 500">FRUITS</div>
+              <div class="fs-3 mt-3" style="font-weight: 300">100% HEALTHY &</div>
+              <div class="fs-3" style="font-weight: 300">AFFORDABLE</div>
+              <div class="mt-3">
+                <button type="button" class="btn btn-theme-green btn-lg fs-7 p-3 ps-5 pe-5 theme_green_btn text-white">
+                  ABOUT US
+                </button>
+                <!-- <button type="button" class="btn btn-success btn-sm  fs-7  p-3 ps-5 pe-5 theme_green_btn">ABOUT US</button> -->
+              </div>
+            </div>
+            <img src="./images/slide-1.jpg" />
+          </div>
+          <div class="swiper-slide swiper-slideCarousel">
+            <div class="rowSlide_1 text-start">
+              <div class="fs-8 fw-bold">SUMMER DISCOUNTS UP TO 40%</div>
+              <div class="mt-4" style="font-size: 2rem; font-weight: 500">A WIDE</div>
+              <div class="mt-1" style="font-size: 2rem; font-weight: 500">VARIETY</div>
+              <div class="fs-3 mt-3" style="font-weight: 300">OF DIFFERENT FRUITS</div>
+              <div class="fs-3" style="font-weight: 300">AFFORDABLE</div>
+              <div class="mt-3">
+                <button type="button" class="btn btn-success btn-lg fs-7 shadow p-3 ps-5 pe-5 theme_green_btn">
+                  ABOUT US
+                </button>
+              </div>
+            </div>
+            <img src="./images/slide-2.jpg" />
+          </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+
+    <!-- 4.banner/icon -->
+    <div class="banner">
+      <div class="banner_item row" style="margin-left: 0">
+        <div class="col-12 d-sm-none d-block text-center" style="font-size: 3.5rem">
+          <div class="fw-light spacing-2" style="margin-top: -2rem">WHY</div>
+          <div class="fw-semibold spacing-4" style="margin-top: -2rem">ORGANIC?</div>
+        </div>
+
+        <div class="col-12 d-none d-sm-block text-center text-xl-start" style="font-size: 3.5rem">
+          <span class="fw-light spacing-2" style="margin-top: -2rem">WHY</span>
+          <span class="fw-semibold spacing-1" style="margin-top: -2rem">ORGANIC?</span>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="card text-center mt-3 mt-md-4" style="border-radius: 10px; box-shadow: 0.8px 0.8px 10px #999">
+            <div class="card-body">
+              <div class="mb-xxl-3">
+                <i class="fa-regular fa-lemon" style="font-size: 3.5rem"></i>
+              </div>
+              <div class="card-title fs-2 spacing-4 fw-semibold spacing-lg-1 fs-lg-4 mt-lg-3">ALWAYS FRESH</div>
+              <p class="card-text fs-7" style="color: #999">
+                We deliver our products always fresh & organic so that you could enjoy your meal.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="card text-center mt-4" style="border-radius: 10px; box-shadow: 0.8px 0.8px 10px #999">
+            <div class="card-body">
+              <div class="mb-xxl-3">
+                <i class="fa-regular fa-flag" style="font-size: 3.5rem"></i>
+              </div>
+              <div class="card-title fs-2 spacing-4 fw-semibold spacing-lg-1 fs-lg-4 mt-lg-3">MODERN FARM</div>
+              <p class="card-text fs-7" style="color: #999">
+                Our farm combines modern technologies, innovations, and trusted farming traditions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="card text-center mt-4" style="border-radius: 10px; box-shadow: 0.8px 0.8px 10px #999">
+            <div class="card-body">
+              <div class="mb-xxl-3">
+                <i class="fa-brands fa-viadeo" style="font-size: 3.5rem"></i>
+              </div>
+              <div class="card-title fs-2 spacing-4 fw-semibold spacing-lg-1 fs-lg-4 mt-lg-3">100% ORGANIC</div>
+              <p class="card-text fs-7" style="color: #999">
+                We adhere to our organic philosophy, which implies avoiding pesticides.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card text-center mt-4" style="border-radius: 10px; box-shadow: 0.8px 0.8px 10px #999">
+            <div class="card-body">
+              <div class="mb-xxl-3">
+                <i class="fa-brands fa-tencent-weibo" style="font-size: 3.5rem"></i>
+              </div>
+              <div class="card-title fs-2 spacing-4 fw-semibold spacing-lg-1 fs-lg-4 mt-lg-3">NO PESTICIDES</div>
+              <p class="card-text fs-7" style="color: #999">
+                Our farming technologies are designed to avoid any pesticides in the fruits we offer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <img src="./images/bg-image-1.jpg" />
+    </div>
+
+    <!-- 5.ourFarm  -->
+    <div class="farm_box pt-4">
+      <div class="farm_box2">
+        <div class="p-3">
+          <div class="row">
+            <!-- 第一部分 -->
+            <div class="farm_text col-12 col-md-6 pe-md-5 pe-lg-7">
+              <div class="text-theme-green spacing-3 fs-6 fw-bold fs-md-5 spacing-md-2">BEST FRUITS SINCE 1999</div>
+              <div class="farm_text02 spacing-3 fw-bold mt-2">OUR FARM</div>
+              <div class="farm_text03 spacing-3 fw-lighte mb-3">WHO WE ARE</div>
+
+              <!-- 導覽 -->
+              <div class="">
+                <nav class="nav" role="tablist">
+                  <a class="nav-link active fw-bold fs-8 farm_active_text" href="#farm_text_1" data-bs-toggle="tab"
+                    >ABOUT</a
+                  >
+                  <a class="nav-link fw-bold fs-8" href="#farm_text_2" data-bs-toggle="tab">OUR MISSION</a>
+                  <a class="nav-link fw-bold fs-8" href="#farm_text_3" data-bs-toggle="tab">OUR VISION</a>
+                </nav>
+              </div>
+
+              <!-- 導覽的內容 -->
+              <div class="tab-content mt-3 fs-7 mb-4" style="color: #888888">
+                <div id="farm_text_1" class="tab-pane fade show active" role="tabpanel">
+                  <p>
+                    Since its foundation, Orange offers best organic fruits for local residents, fruit markets, and
+                    guests of our city. We are dedicated to improving your healthy food standards.
+                  </p>
+                </div>
+
+                <div id="farm_text_2" class="tab-pane fade" role="tabpanel">
+                  <p>
+                    Since its foundation, Orange offers best organic fruits for local residents, fruit markets, and
+                    guests of our city. We are dedicated to improving your healthy food standards.
+                  </p>
+                </div>
+
+                <div id="farm_text_3" class="tab-pane fade" role="tabpanel">
+                  <p>
+                    Since its foundation, Orange offers best organic fruits for local residents, fruit markets, and
+                    guests of our city. We are dedicated to improving your healthy food standards.
+                  </p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                class="btn mt-1 btn-theme-green btn-lg fs-7 p-3 ps-5 pe-5 theme_green_btn text-white"
+              >
+                READ MORE
+              </button>
+            </div>
+
+            <!-- 第二部分 -->
+            <div class="farm_img col-12 col-md-6 mt-4 mt-md-0">
+              <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <img src="./images/about-1-634x373.jpg" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="./images/about-2-634x373-1.jpg" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="./images/about-3-634x373.jpg" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="./images/about-4-634x373.jpg" />
+                  </div>
+                </div>
+              </div>
+              <div thumbsSlider="" class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide swiper-slide01">
+                    <img src="./images/about-1-634x373.jpg" />
+                  </div>
+                  <div class="swiper-slide swiper-slide02">
+                    <img src="./images/about-2-634x373-1.jpg" />
+                  </div>
+                  <div class="swiper-slide swiper-slide03">
+                    <img src="./images/about-3-634x373.jpg" />
+                  </div>
+                  <div class="swiper-slide swiper-slide04">
+                    <img src="./images/about-4-634x373.jpg" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6.Featured_Offers -->
+    <div class="Featured_Offers_box">
+      <div class="row Featured_Offers_row">
+        <div class="col-12 text-center mb-5">
+          <div class="d-sm-none">
+            <div class="Featured_Offers_text01 fw-semibold spacing-3">FEATURED</div>
+            <div class="Featured_Offers_text02 fw-semibold spacing-3">OFFERS</div>
+          </div>
+
+          <div class="d-sm-block d-none">
+            <div class="Featured_Offers_text01 fw-semibold spacing-3">FEATURED OFFERS</div>
+          </div>
+
+          <div class="Featured_Offers_text03 ps-5 pe-5">
+            Take a look at organic fruits that we offer on a regular basis.
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4 p-0 Featured_Offers_img" >
+          <a class="image-popup-no-margins" href="./images/masonry-fullwidth-gallery-1-480x314.jpg">
+            <img src="./images/masonry-fullwidth-gallery-1-480x314.jpg" />
+          </a>
+        </div>
+        <div class="col-12 col-md-4 p-0 Featured_Offers_img">
+          <a class="image-popup-no-margins" href="./images/masonry-fullwidth-gallery-2-480x314.jpg">
+            <img src="./images/masonry-fullwidth-gallery-2-480x314.jpg" />
+          </a>
+        </div>
+        <div class="col-12 col-md-4 p-0 Featured_Offers_img">
+          <a class="image-popup-no-margins" href="./images/masonry-fullwidth-gallery-4-480x314.jpg">
+          <img src="./images/masonry-fullwidth-gallery-4-480x314.jpg" />
+          </a>
+        </div>
+        <div class="col-12 col-md-4 p-0 Featured_Offers_img">
+          <a class="image-popup-no-margins" href="./images/masonry-fullwidth-gallery-5-480x314.jpg">
+          <img src="./images/masonry-fullwidth-gallery-5-480x314.jpg" />
+          </a>
+        </div>
+        <div class="col-12 col-md-4 p-0 Featured_Offers_img">
+          <a class="image-popup-no-margins" href="./images/masonry-fullwidth-gallery-6-480x314.jpg">
+          <img src="./images/masonry-fullwidth-gallery-6-480x314.jpg" />
+          </a>
+        </div>
+        <div class="col-12 col-md-4 p-0 Featured_Offers_img">
+          <a class="image-popup-no-margins" href="./images/masonry-fullwidth-gallery-7-480x314.jpg">
+          <img src="./images/masonry-fullwidth-gallery-7-480x314.jpg" />
+          </a>
+        </div>
+
+        <div class="col-12 m-5 mb-6">
+          <button
+            type="button"
+            class="btn mt-1 btn-theme-green btn-lg fs-7 p-3 ps-5 pe-5 theme_green_btn text-white position-absolute start-50 translate-middle-x"
+          >
+            READ MORE
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7.ourTeam -->
+    <div class="ourTeam_box pt-4 pb-4 pt-lg-6 pb-lg-6">
+      <div class="ourTeam_box2">
+        <div class="ps-3 pe-3 ps-md-3 pe-md-3">
+          <div class="row">
+            <div class="col-12 text-center ourTeam_title fw-semibold spacing-3 pb-4">OUR TEAM</div>
+            <!-- 1 -->
+            <div class="col-12 col-md-4 mb-3 ourTeam_card">
+              <div class="card text-center border-0">
+                <img src="./images/team-1-370x334.jpg" class="card-img-top" style="border-radius: 10px" />
+                <div class="card-body">
+                  <h5 class="card-title spacing-2 fs-6 fs-md-5 mt-3">JAMES ANDERSON</h5>
+                  <p class="card-text ourTeam_text mt-4 mb-4" style="color: #888888">
+                    James is the farm owner & founder who deals with strategic decisions.
+                  </p>
+                  <a href="#" class="me-3"><i class="fa-brands fa-facebook"></i></a>
+                  <a href="#" class="me-3"><i class="fa-brands fa-twitter"></i></a>
+                  <a href="#" class="me-3"><i class="fa-brands fa-instagram"></i></a>
+                  <a href="#" class="me-3"><i class="fa-brands fa-google-plus-g"></i></a>
+                </div>
+              </div>
+            </div>
+            <!-- 2 -->
+            <div class="col-12 col-md-4 mb-3 ourTeam_card">
+              <div class="card text-center border-0">
+                <img src="./images/team-2-370x334.jpg" class="card-img-top" style="border-radius: 10px" />
+                <div class="card-body">
+                  <h5 class="card-title spacing-2 fs-6 fs-md-5 mt-3">REBECCA MARTINEZ</h5>
+                  <p class="card-text ourTeam_text mt-4 mb-4" style="color: #888888">
+                    Rebecca is our sales manager who likes to promote the benefits of organic food.
+                  </p>
+                  <a href="#" class="me-3"><i class="fa-brands fa-facebook"></i></a>
+                  <a href="#" class="me-3"><i class="fa-brands fa-twitter"></i></a>
+                  <a href="#" class="me-3"><i class="fa-brands fa-instagram"></i></a>
+                  <a href="#" class="me-3"><i class="fa-brands fa-google-plus-g"></i></a>
+                </div>
+              </div>
+            </div>
+            <!-- 3 -->
+            <div class="col-12 col-md-4 ourTeam_card">
+              <div class="card text-center border-0">
+                <img src="./images/team-3-370x334.jpg" class="card-img-top" style="border-radius: 10px" />
+                <div class="card-body">
+                  <h5 class="card-title spacing-2 fs-6 fs-md-5 mt-3">SAM WILLIAMS</h5>
+                  <p class="card-text ourTeam_text mt-4 mb-4" style="color: #888888">
+                    Sam is our leading fruit processing expert with over 20 years of experience.
+                  </p>
+                  <a href="#" class="me-3"><i class="fa-brands fa-facebook"></i></a>
+                  <a href="#" class="me-3"><i class="fa-brands fa-twitter"></i></a>
+                  <a href="#" class="me-3"><i class="fa-brands fa-instagram"></i></a>
+                  <a href="#" class="me-3"><i class="fa-brands fa-google-plus-g"></i></a>
+                </div>
+              </div>
+            </div>
+            <!--  -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8.connected -->
+    <div class="connected_box">
+      <div class="connected_box2">
+        <div class="row ps-3 pe-3 align-items-center">
+          <!-- 1 -->
+          <div class="col-12 col-md-4">
+            <div class="connected_text01 fw-bold spacing-3">STAY</div>
+            <div class="connected_text02 spacing-3">CONNECTED</div>
+            <div class="connected_text03 mt-3">Subscribe to our newsletter</div>
+          </div>
+          <!-- 2 -->
+          <div class="col-12 mt-sm-5 col-md-5 ms-0">
+            <input type="email" class="form-control connected_input" placeholder="Enter your email address" />
+          </div>
+          <!-- 3 -->
+          <div class="col12 col-md-3">
+            <button
+              type="submit"
+              class="btn mt-3 btn-theme-green btn-lg fs-7 p-3 ps-5 pe-5 theme_green_btn text-white connected_btn"
+            >
+              SUBSCRIBE
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9.testimonial -->
+    <div class="carousel02_box position-relative">
+      <div class="carousel02_box2">
+        <div class="row ps-4 pe-4 pt-5 pb-5">
+          <div class="col-12">
+            <div class="carousel02_title text-center fw-semibold spacing-3">TESTIMONIALS</div>
+          </div>
+          <div class="col-12">
+            <div class="swiper mySwiperCarousel2">
+              <div class="swiper-wrapper">
+                <!-- 輪播1 -->
+                <div class="swiper-slide" style="background-color: #f1f1f1">
+                  <div class="row text-center m-auto">
+                    <div class="col-12">
+                      <div class="fs-5" style="color: #888">
+                        I just can’t say enough good things about your farm and the products you provide. Since I first
+                        bought your apples at a local store, I’m your regular client. Thank you for everything!
+                      </div>
+                    </div>
+                    <div class="col-12 text-center mt-4">
+                      <img
+                        src="./images/user-7-87x87.jpg"
+                        style="width: 70px; height: 70px; border-radius: 50%; display: inline-block"
+                      />
+                    </div>
+
+                    <div class="col-12">
+                      <div class="spacing-1 fs-6 fw-bold">BILL WILSON</div>
+                    </div>
+                    <div class="col-12 mt-3">
+                      <div href="" style="text-decoration: none" class="fst-italic text-theme-green">Client</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 輪播2 -->
+                <div class="swiper-slide" style="background-color: #f1f1f1">
+                  <div class="row text-center m-auto">
+                    <div class="col-12">
+                      <div class="fs-5" style="color: #888">
+                        We love the variety of produce that we receive from you every week and the challenge of cooking
+                        creatively to use everything you deliver. Thank you for the great service!
+                      </div>
+                    </div>
+                    <div class="col-12 text-center mt-4">
+                      <img
+                        src="./images//user-9-87x87.jpg"
+                        style="width: 70px; height: 70px; border-radius: 50%; display: inline-block"
+                      />
+                    </div>
+
+                    <div class="col-12">
+                      <div class="spacing-1 fs-6 fw-bold">JAMES SMITH</div>
+                    </div>
+                    <div class="col-12 mt-3">
+                      <div href="" style="text-decoration: none" class="fst-italic text-theme-green">Client</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 輪播3 -->
+                <div class="swiper-slide" style="background-color: #f1f1f1">
+                  <div class="row text-center m-auto">
+                    <div class="col-12">
+                      <div class="fs-5" style="color: #888">
+                        As your customers, we really enjoy the fresh vegetables and fruits. Everyone at your farm is
+                        very helpful, friendly and courteous. We highly recommend this farm to everyone.
+                      </div>
+                    </div>
+                    <div class="col-12 text-center mt-4">
+                      <img
+                        src="./images//user-8-87x87.jpg"
+                        style="width: 70px; height: 70px; border-radius: 50%; display: inline-block"
+                      />
+                    </div>
+
+                    <div class="col-12">
+                      <div class="spacing-1 fs-6 fw-bold">SAMANTHA WILLIAMS</div>
+                    </div>
+                    <div class="col-12 mt-3">
+                      <div href="" style="text-decoration: none" class="fst-italic text-theme-green">Client</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10.our blog -->
+    <div class="ourBlog_box_box position-relative">
+      <div class="ourBlog_box_box2">
+        <div class="row ps-4 pe-4 pt-5 pb-5">
+          <div class="col-12">
+            <div class="ourBlog_box_title text-center fw-bold spacing-3">OUR BLOG</div>
+          </div>
+          <div class="col-12">
+            <div class="swiper mySwiper_ourBlog" style="height: auto">
+              <div class="swiper-wrapper">
+                <!-- 輪播1 -->
+                <div class="swiper-slide swiper-slide2 m-1">
+                  <div class="card" style="width: 90%; box-shadow: 1px 1px 4px #ddd">
+                    <img src="./images/israel-egio-51174-unsplash.jpg" class="card-img-top" />
+                    <div class="card-body">
+                      <p class="card-text fs-1 fs-sm-4 fw-semibold" style="text-align: left">
+                        How Can Salmon be Raised Organically in Fish Farms?
+                      </p>
+                      <p class="card-text2" style="text-align: left; color: #555">December 6, 2018</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- 輪播2 -->
+                <div class="swiper-slide swiper-slide2 m-1">
+                  <div class="card" style="width: 90%; box-shadow: 1px 1px 4px #ddd">
+                    <img src="./images/rawpixel-603025-unsplash.jpg" class="card-img-top" />
+                    <div class="card-body">
+                      <p class="card-text fs-1 fs-sm-4 fw-semibold" style="text-align: left">
+                        How to Make Your Breakfast Easy and Yummy
+                      </p>
+                      <p class="card-text2" style="text-align: left; color: #555">December 6, 2018</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- 輪播3 -->
+                <div class="swiper-slide swiper-slide2 m-1">
+                  <div class="card" style="width: 90%; box-shadow: 1px 1px 4px #ddd">
+                    <img src="./images/veeterzy-82538-unsplash.jpg" class="card-img-top" />
+                    <div class="card-body">
+                      <p class="card-text fs-1 fs-sm-4 fw-semibold" style="text-align: left">
+                        Everyday Dinner Choices for a Healthier, Happier You
+                      </p>
+                      <p class="card-text2" style="text-align: left; color: #555">December 6, 2018</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- 輪播4 -->
+                <div class="swiper-slide swiper-slide2 m-1">
+                  <div class="card" style="width: 90%; box-shadow: 1px 1px 4px #ddd">
+                    <img src="./images/bodie-pyndus-57660-unsplash.jpg" class="card-img-top" />
+                    <div class="card-body">
+                      <p class="card-text fs-1 fs-sm-4 fw-semibold" style="text-align: left">
+                        Standardizing the Organic Industry in the USA
+                      </p>
+                      <p class="card-text2" style="text-align: left; color: #555">December 6, 2018</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- 輪播5 -->
+                <div class="swiper-slide swiper-slide2 m-1">
+                  <div class="card" style="width: 90%; box-shadow: 1px 1px 4px #ddd">
+                    <img src="./images/ashim-d-silva-36117-unsplash.jpg" class="card-img-top" />
+                    <div class="card-body">
+                      <p class="card-text fs-1 fs-sm-4 fw-semibold" style="text-align: left">
+                        10 Health Benefits: What Secrets Do Watermelons Keep?
+                      </p>
+                      <p class="card-text2" style="text-align: left; color: #555">December 4, 2018</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- 輪播6 -->
+                <div class="swiper-slide swiper-slide2 m-1">
+                  <div class="card" style="width: 90%; box-shadow: 1px 1px 4px #ddd">
+                    <img src="./images/katherine-chase-246696-unsplash.jpg" class="card-img-top" />
+                    <div class="card-body">
+                      <p class="card-text fs-1 fs-sm-4 fw-semibold" style="text-align: left">
+                        Lemons & Limes: Why They are Especially Tasty in Winter
+                      </p>
+                      <p class="card-text2" style="text-align: left; color: #555">December 4, 2018</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11.logos -->
+    <div class="logos_box" >
+      <div class="logos_box2">
+      <div class="row text-center pt-5 pb-5 mx-auto">
+        <div class="w-md-20"><img src="./images/clients-1-120x114.webp" alt=""></div>
+        <div class="w-md-20 mt-3"><img src="./images/clients-2-105x118.webp" alt=""></div>
+        <div class="w-md-20 mt-3"><img src="./images/clients-3-111x98.webp" alt=""></div>
+        <div class="w-md-20 mt-3"><img src="./images/clients-4-122x92.webp" alt=""></div>
+        <div class="w-md-20 mt-3"><img src="./images/clients-5-112x112.webp" alt=""></div>
+      </div>
+      </div>
+    </div>
+
+    <!-- 12.connection -->
+    <div class="connection_box">
+    <div class="connection_box2">
+
+      <div class="pt-5 pb-5 p-3">
+        <div class="row">
+          <!-- A -->
+          <div class="col-12 col-md-4 text-white mb-5">
+            <div class="fw-bold fs-5">VISIT OUR FARM</div>
+            <div class="connection_line mb-3"></div>
+            <div class="row">
+              <!-- icon1 -->
+              <div class="col-1 fs-1 opacity-25 me-2 mb-4"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="col-8 fs-7 fw-semibold">
+                <div>523 Sylvan Ave, 5th Floor</div>
+                <div>Mountain View, CA 94041 USA</div>
+                </div>
+            </div>
+            <!-- icon2 -->
+            <div class="row">
+              <div class="col-1 fs-2 opacity-25 me-2"><i class="fa-regular fa-clock"></i></div>
+              <div class="col-8 fs-7 fw-semibold">
+                <div>Weekdays:08:00am - 08:00pm</div>
+                <div>Weekends:10:00am - 06:00pm</div>
+                </div>
+            </div>
+          </div>
+          <!-- B -->
+          <div class="col-12 col-md-3 text-white mb-5">
+            <div class="fw-bold fs-5">QUICK LINKS</div>
+            <div class="connection_line mb-3"></div>
+            <div><a href="" class="text-theme-green" >Home</a></div>
+            <div><a href="">About</a></div>
+            <div><a href="">Team</a></div>
+            <div><a href="">Gallery</a></div>
+            <div><a href="">Blog</a></div>
+          </div>
+          <!-- C -->
+          <div class="col-12 col-md-5 text-white mb-4">
+            <!-- 字 -->
+            <div class="mb-4">
+              <div class="fw-bold fs-5">GET IN TOUCH</div>
+              <div class="connection_line mb-3"></div>
+              <div>Subscribe to our newsletter to receive weekly news, updates, special offers, and exclusive discounts.</div>
+            </div>
+            <!-- input -->
+            <!-- input1 -->
+            <div class="row">
+              <div class="col-12 mt-sm-5 col-md-5 ms-0 mt-md-4">
+                <input type="email" class="form-control connected_input connection_box_input" placeholder="Enter your email address" />
+              </div>
+              <!-- input2 -->
+              <div class="col-12 col-md-5 col-md-3 text-center">
+                <button
+                type="submit"
+                class="btn mt-3 btn-theme-green btn-lg fs-7 p-3 ps-5 pe-5 theme_green_btn text-white connected_btn connection_box_btn"
+                >SUBSCRIBE </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13.footer -->
+  <div class="footer_box">
+    <div class="footer_box2 p-3 pt-4 pb-4 d-md-flex justify-content-between pb-md-0">
+   
+
+        <div class="footer_icon_box mb-3 d-flex justify-content-center align-content-center">
+          <div class="footer_icon me-3"><i class="fa-brands fa-facebook-f"></i></div>
+          <div class="footer_icon me-3"><i class="fa-brands fa-twitter"></i></div>
+          <div class="footer_icon me-3"><i class="fa-brands fa-instagram"></i></div>
+          <div class="footer_icon "><i class="fa-brands fa-google-plus-g"></i></div>
+        </div>
+
+        <div class="text-white text-center fs-6">© 2018 Frutti. All rights reserved. Privacy Policy. Theme design by Zemez</div>
+
+    </div>
+    
+  </div>
+    <!-- bootstrap主程式 -->
+    <script src="./js/bootstrap.bundle.js"></script>
+    <!-- JQ -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+    ></script>
+    <!-- vue -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.10/vue.global.min.js"
+      integrity="sha512-es4vSPtFlEKtmABZjNbGIagxq+4vAymgRWKhEt4C7Z+R8nHasGt/1H5JCBnUILChOXg1i1bImtqHul/LM7UxlQ=="
+      crossorigin="anonymous"
+    ></script>
+    <!-- swiper -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- gsap -->
+    <script src="./gsap/gsap.js"></script>
+    <!-- gsap plug -->
+    <script src="./gsap/ScrollTrigger.js"></script>
+    <!-- lightbox -->
+    <script src="./js/jquery.magnific-popup.js"></script>
+    <script src="./js/jquery.magnific-popup_self.js"></script>
+    <!-- my js -->
+    <script src="./js/all_js.js"></script>
+    <script>
+      //  Vue
+      const { ref } = Vue
+
+      Vue.createApp({
+        setup() {
+          const searchOpen = ref(false)
+          return { searchOpen }
+        }
+      }).mount('#app')
+
+      
+   
+    </script>
+  </body>
+</html>

@@ -1,0 +1,658 @@
+/* * 不含為元素 BS有寫類似的 */
+/* * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: 'Noto Sans TC', sans-serif;
+} */
+
+body {
+  overflow-x: hidden;
+}
+
+/* header 營業時間與搜尋(非導覽列) */
+.header {
+  /* height: 17vh; */
+  height: 165px;
+  width: 100%;
+  background-color: rgb(61, 61, 61);
+}
+
+.search_button {
+  border-radius: 30px;
+  width: 48px;
+  background-color: #5c5c5c;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.search_submit {
+  border-radius: 30px;
+  width: 60px;
+  background-color: #5c5c5c;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.btn-searchDel {
+  border-radius: 30px;
+  width: 60px;
+  background-color: #5c5c5c;
+  color: #fff;
+}
+
+.search-input {
+  border-radius: 30px;
+}
+
+/* vue 的 <transition> fade 的 class  */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s;
+}
+
+/* 導覽列與聯絡資訊*/
+.navbar_box {
+  /* height: 36vh; */
+  height: 300px;
+  width: 100%;
+  position: relative;
+}
+
+.navbar_box a {
+  color: black;
+  text-decoration: none;
+}
+
+.navbar_box a:hover {
+  color: rgb(0, 197, 89);
+}
+
+.logoText {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+}
+
+.offcanvas_list a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  line-height: 2.5;
+}
+
+.offcanvas_list a:hover {
+  color: #fffb12;
+}
+
+/* sm時出現的導覽列 */
+.navbar {
+  width: 98%;
+  position: absolute;
+  bottom: -15%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-weight: 600;
+}
+
+.navbar .nav-link a:hover {
+  color: #fffb12 !important;
+}
+
+/* sm時出現的line */
+.line {
+  float: left;
+  width: 1px;
+  height: 100%;
+  background-color: #cccccc;
+}
+
+/* 輪播圖 */
+.Carousel_box {
+  width: 100%;
+  /* height: 70vh; */
+  height: 600px;
+  letter-spacing: 4px;
+}
+
+.swiperCarousel {
+  width: 100%;
+  height: 100%;
+}
+
+.swiperCarousel .swiper-button-prev,
+.swiperCarousel .swiper-button-next {
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.mySwiperCarousel:hover .swiper-button-prev,
+.mySwiperCarousel:hover .swiper-button-next {
+  opacity: 1;
+}
+
+.swiper-slideCarousel {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.swiper-slideCarousel img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-slideCarousel h1 {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+}
+
+.swiper-slideCarousel p {
+  position: absolute;
+  top: 300px;
+  left: 100px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 2.5rem;
+  height: 2.5rem;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.swiper-button-next::after {
+  font-size: 1.1rem;
+  font-weight: bolder;
+  color: #333;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 28%;
+  left: 40%;
+}
+
+.swiper-button-prev::after {
+  font-size: 1.1rem;
+  font-weight: bolder;
+  color: #333;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 28%;
+  left: 34%;
+}
+
+.rowSlide_1 {
+  position: absolute;
+  left: 12%;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+/* 輪播圖裡的按鈕 */
+.theme_green_btn {
+  border: none;
+  box-shadow: 3px 3px 5px #8d8d8d !important;
+  font-weight: 900;
+  border: none;
+}
+
+.theme_green_btn:hover {
+  background-color: rgb(255, 242, 120);
+  color: #000 !important;
+}
+
+/* 橫幅 */
+.banner {
+  /* height: 130vh; */
+  height: 1100px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner img {
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
+  width: 100%;
+}
+
+.banner_item {
+  width: 95%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* border: 1px solid red; */
+}
+
+/* FARM(第五部分) */
+.farm_box {
+  /* height: 107vh; */
+  height: 930px;
+  width: 100%;
+  position: relative;
+  /* background-color: #f05e5e; */
+}
+
+.farm_img,
+.farm_text {
+  /* border: 1px solid red; */
+
+  height: 100%;
+  margin: auto;
+}
+
+.farm_box .row a {
+  border-bottom: 3px solid #818181;
+  padding-bottom: 0.5rem;
+  color: #000;
+}
+
+.farm_active_text {
+  border-bottom: 3px solid rgb(80, 161, 114) !important;
+  color: rgb(80, 161, 114) !important;
+}
+
+.farm_text02 {
+  font-size: 1.9rem;
+}
+
+.farm_text03 {
+  font-size: 2.3rem;
+}
+
+/* Featured_Offers (第6區) */
+.Featured_Offers_box {
+  background-color: #f1f1f1;
+  height: 2100px;
+  /* height: 300vh; */
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.Featured_Offers_row {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  /* background-color: #fffb12; */
+  margin: 0;
+}
+
+.Featured_Offers_text01,
+.Featured_Offers_text02 {
+  font-size: 2.2rem;
+}
+
+.Featured_Offers_text02 {
+  margin-top: -15px;
+}
+
+.Featured_Offers_img {
+  height: 280px;
+  max-height: 280px;
+  position: relative;
+}
+
+.Featured_Offers_img:hover::after{
+  content: '';
+  background-color: rgba(255,255,255,0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: background-color 1s;
+  cursor: pointer;
+  pointer-events:none;
+
+}
+
+.Featured_Offers_img:hover::before{
+  content: '\f06e';
+  color: rgb(80, 161, 114);
+  font-family: 'Font Awesome 5 Free'; 
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 3rem;
+  z-index: 2;
+  transition: color 1s;
+  cursor: pointer;
+  pointer-events:none;
+}
+
+.Featured_Offers_row img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ourTeam (第7區) */
+.ourTeam_box {
+  /* height: 1500px; */
+  width: 100%;
+  background-color: #fff;
+}
+
+.ourTeam_title {
+  font-size: 2rem;
+}
+
+.ourTeam_box .card-body a {
+  color: #000;
+  font-size: 1.2rem;
+}
+
+.ourTeam_box .card-body a:hover {
+  color: rgb(80, 161, 114);
+  font-size: 1.2rem;
+}
+
+/* connected (第8區) */
+.connected_box {
+  height: 600px;
+  width: 100%;
+  background-color: #5c5c5c;
+  position: relative;
+  background: url(../images/parallax-1.jpg) no-repeat center/cover;
+  color: #fff;
+}
+
+.connected_text01 {
+  font-size: 3rem;
+}
+
+.connected_text02 {
+  font-size: 2.2rem;
+  margin-top: -10px;
+}
+
+.connected_input {
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom: 2px #fff solid;
+  width: 100%;
+}
+
+.connected_input::placeholder {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.connected_input:focus {
+  background-color: rgba(0, 0, 0, 0);
+  outline: none;
+}
+
+.connected_box2 {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.connected_btn {
+  width: 100%;
+}
+
+/* testimonial(第9區)  */
+.carousel02_box {
+  background-color: #f1f1f1;
+}
+
+.carousel02_title {
+  font-size: 2.2rem;
+}
+
+/* our blog(第10區) */
+.ourBlog_box {
+  width: 100%;
+  background-color: yellowgreen;
+}
+
+.ourBlog_box_title {
+  font-size: 2.2rem;
+}
+
+/* 11.logos */
+.logos_box{
+  background-color: #f1f1f1;
+  width: 100%;
+  /* position: relative; */
+}
+
+.logos_box img:hover{
+  transform:scale(115%);
+ transition: 0.5s;
+}
+
+/* 12.connection */
+.connection_box{
+  background-color: #4a4a4a;
+  width: 100%;
+}
+
+.connection_line{
+  width: 50px;
+  height: 2px;
+  background-color: #ff0;
+}
+
+.connection_box a{
+  text-decoration: none;
+  color: #fff;
+}
+
+.connection_box a:hover{
+  color: rgb(80, 161, 114);
+}
+
+.connection_box_input::placeholder{
+color: #818181;
+}
+
+.connection_box_btn{
+  box-shadow: 2px 2px 6px #333  !important;
+}
+
+/* 13.footer */
+.footer_box{
+  width: 100%;
+  background-color: #333;
+}
+
+.footer_icon{
+  width: 40px;
+  height: 40px;
+  border: 1px solid #bdbdbd;
+  border-radius: 50%;
+  color: #bdbdbd;
+  position: relative;
+}
+
+.footer_icon i{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+@media (min-width: 576px) {
+  /* header 營業時間與搜尋(非導覽列) */
+  .header {
+    height: 60px;
+    line-height: 30px;
+  }
+
+  /* 導覽列與聯絡資訊*/
+  .navbar_box {
+    /* height: 20vh; */
+    height: 165px;
+    width: 100%;
+    position: relative;
+  }
+
+  /* 輪播圖 */
+  .Carousel_box {
+    width: 100%;
+    /* height: 49vh; */
+    height: 700px;
+    letter-spacing: 6px;
+  }
+
+  /* 橫幅 */
+  .banner {
+    /* height: 110vh; */
+    height: 1100px;
+  }
+
+  /* FARM(第5部分) */
+
+  .farm_text02 {
+    font-size: 3rem;
+  }
+
+  .farm_text03 {
+    font-size: 2.3rem;
+  }
+
+  .ourTeam_box .card {
+    text-align: center !important;
+  }
+
+  /* 第9區 */
+  .carousel02_title {
+    font-size: 3.2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  /* 橫幅 */
+  .banner {
+    /* height: 85vh; */
+    height: 730px;
+  }
+
+  /* 橫幅 */
+  .card {
+    text-align: left !important;
+  }
+
+  /* FARM(第五部分) */
+  .farm_box {
+    /* height: 60vh; */
+    height: 540px;
+  }
+
+  .farm_img,
+  .farm_text {
+    height: 100px;
+    margin: auto;
+  }
+
+  /* Featured_Offers (第6區) */
+  .Featured_Offers_box {
+    height: 900px;
+  }
+
+  .Featured_Offers_text01 {
+    font-size: 3.3rem;
+  }
+  /* ourTeam (第7區) */
+  .ourTeam_title {
+    font-size: 4.5rem;
+  }
+
+  .ourTeam_text {
+    font-size: 1.15rem;
+  }
+
+  /* connected (第8區) */
+  .connected_box {
+    height: 330px;
+  }
+}
+
+@media (min-width: 1200px) {
+  /* 導覽列與聯絡資訊*/
+  .navbar_box {
+    padding: 0 10%;
+  }
+
+  .navbar {
+    width: 80%;
+  }
+
+  /* 橫幅 */
+  .banner_item {
+    position: absolute;
+    width: 48%;
+    top: 50%;
+    left: 47%;
+    transform: translate(0, -50%);
+  }
+
+  /* FARM(第五部分) */
+  .farm_box {
+    position: relative;
+    /* height: 58vh; */
+    height: 530px;
+  }
+
+  .farm_box2 {
+    width: 80%;
+    /* height: 100%; */
+    /* border: 1px red solid; */
+    position: absolute;
+    left: 50%;
+    /* top: 50%; */
+    transform: translateX(-50%);
+  }
+
+  /* ourTeam (第7區) */
+  .ourTeam_box {
+    /* position: relative; */
+    width: 80%;
+    display: flex;
+    margin: auto;
+  }
+
+  .ourTeam_box2 {
+    width: 100%;
+  }
+
+  /* 9.testimonial */
+  /* 10.our blog */
+  /* 11.logos */
+  .connected_box2,
+  .carousel02_box2,
+  .ourBlog_box_box2,
+  .logos_box2,
+  .connection_box2,
+  .footer_box2{
+    width: 80%;
+    margin: auto;
+  }
+
+}
