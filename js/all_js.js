@@ -107,10 +107,10 @@
    var swiper = new Swiper('.mySwiperCarousel', {
      loop: true,
      effect: 'fade', // 使用淡入淡出效果
-     // autoplay: {
-     //   delay: 500000, // 切換間隔時間 (毫秒)
-     //   disableOnInteraction: false // 使用者互動後是否停止自動播放
-     // },
+     autoplay: {
+       delay: 5000, // 切換間隔時間 (毫秒)
+       disableOnInteraction: false // 使用者互動後是否停止自動播放
+     },
      navigation: {
        nextEl: '.swiper-button-next',
        prevEl: '.swiper-button-prev'

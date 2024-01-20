@@ -25,7 +25,7 @@
 ![05](https://raw.githubusercontent.com/Leileisme/Bootstrap_Web/main/images/readme%20img/05.jpg)
 
 8. stay connected：gsap左滑入
-9. testimonial：gsap右滑入
+9. testimonial：gsap右滑入、swiperjs(輪播)
 
 ![06](https://raw.githubusercontent.com/Leileisme/Bootstrap_Web/main/images/readme%20img/06.jpg)
 

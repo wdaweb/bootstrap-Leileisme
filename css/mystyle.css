@@ -76,10 +76,15 @@ body {
   font-size: 1.1rem;
 }
 
+.offcanvas_list {
+  list-style: none;
+}
+
 .offcanvas_list a {
   color: rgb(255, 255, 255);
   text-decoration: none;
   line-height: 2.5;
+
 }
 
 .offcanvas_list a:hover {
@@ -168,7 +173,7 @@ body {
   height: 2.5rem;
   position: absolute;
   background-color: #fff;
-  border-radius: 50%;
+  border-radius: 50%;transform: translateY(300px);
 }
 
 .swiper-button-next::after {
@@ -513,13 +518,19 @@ color: #818181;
     position: relative;
   }
 
-  /* 輪播圖 */
+  /* 3.輪播圖 */
   .Carousel_box {
     width: 100%;
     /* height: 49vh; */
     height: 700px;
     letter-spacing: 6px;
   }
+
+  .swiper-button-prev,
+.swiper-button-next {
+  border-radius: 50%;transform: translateY(100px);
+}
+
 
   /* 橫幅 */
   .banner {
