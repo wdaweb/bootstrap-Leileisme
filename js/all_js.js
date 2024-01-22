@@ -8,6 +8,8 @@
      trigger: '.Carousel_box',
      start: 'center',
      end: 'top',
+     invalidateOnRefresh:true,
+     restart:true,
      // markers: true, // 打開標記(看不到的觸發線)
    },
    x: 1000,

@@ -11,11 +11,13 @@
 
 ![02](https://raw.githubusercontent.com/Leileisme/Bootstrap_Web/main/images/readme%20img/02.jpg)
 
-5. ourFarm：左區BS頁籤切換文字/gsap左滑入、右區swiperjs切換圖片/gsap右滑入
+5. ourFarm：<br>
+左區BS頁籤切換文字/gsap左滑入 <br>
+右區swiperjs切換圖片/gsap右滑入
 
 ![03](https://raw.githubusercontent.com/Leileisme/Bootstrap_Web/main/images/readme%20img/03.jpg)
 
-6. Featured_Offers：lightbox燈箱效果(hover有眼睛喔)
+6. Featured_Offers：lightbox燈箱效果(hover時有眼睛喔)
 
 ![04](https://raw.githubusercontent.com/Leileisme/Bootstrap_Web/main/images/readme%20img/04.jpg)
 
