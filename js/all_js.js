@@ -8,8 +8,8 @@
      trigger: '.Carousel_box',
      start: 'center',
      end: 'top',
-     invalidateOnRefresh:true,
-     restart:true,
+     invalidateOnRefresh:true, //跟隨響應式換位置，調整螢幕放開時才會更新
+     restart:true, // 響應式，調整螢幕邊動邊更新
      // markers: true, // 打開標記(看不到的觸發線)
    },
    x: 1000,
